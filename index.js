@@ -47,8 +47,16 @@ exports.mockAwsServiceMethod = (
  */
 exports.mockAwsServiceMethods = (AWS, serviceName, methodNames) => {
   if (Array.isArray(methodNames)) {
-    return methodNames.map((methodName) =>
-      exports.mockAwsServiceMethod(AWS, serviceName, methodName)
+    return methodNames.reduce(
+      (acc, methodName) =>
+        Object.assign(acc, {
+          [methodName]: exports.mockAwsServiceMethod(
+            AWS,
+            serviceName,
+            methodName
+          ),
+        }),
+      {}
     );
   }
   return Object.entries(methodNames).reduce(
