@@ -1,6 +1,6 @@
 {
   "name": "jest-mock-aws",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A prepared AWS mock to be used with jest.",
   "keywords": [
     "aws",
