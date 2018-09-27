@@ -1,6 +1,8 @@
 # jest-mock-aws
 
-Utiliy to help you mock AWS.
+Utiliy to help you mock AWS when testing with [Jest](https://jestjs.io).
+
+You can use this only with the AWS Promise interface.
 
 ## Quick start
 
@@ -11,12 +13,13 @@ npm install --save-dev jest-mock-aws
 ### _index.js_
 
 ```js
-export.publish = (message) => new AWS.SNS().publish(message).promise();
+exports.publish = (message) => new AWS.SNS().publish(message).promise();
 ```
 
-### index.test.js\_
+### _index.test.js_
 
 ```js
+const AWS = require('aws-sdk');
 const { mockAwsServiceMethod } = require('jest-mock-aws');
 
 jest.mock('aws-sdk', () => ({}));
@@ -52,7 +55,7 @@ mockSnsPublish.mockResolvedValue({});
 
 ### mockAwsServiceMethods
 
-#### `mockAwsServiceMethods(AWS:object, serviceName:string, methods:Array|Object) :Array|Object`
+#### `mockAwsServiceMethods(AWS:object, serviceName:string, methods:Array|Object) :object`
 
 With Array.
 
@@ -70,10 +73,8 @@ With Object.
 
 ```js
 const AWS = {};
-const mockSqs = mockAwsServiceMethods(AWS, 'SQS', [
-  'deleteMessage',
-  'receiveMessages',
-]);
-mockSqs.deleteMessage.mockResolvedValue({});
-mockSqs.receiveMessages.mockResolvedValue({});
+const mockSqs = mockAwsServiceMethods(AWS, 'SQS', {
+  deleteMessage: jest.fn().mockResolvedValue({});
+  receiveMessages: jest.fn().mockResolvedValue({});
+});
 ```
