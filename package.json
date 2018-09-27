@@ -1,0 +1,54 @@
+{
+  "name": "jest-mock-aws",
+  "version": "1.0.0",
+  "description": "A prepared AWS mock to be used with jest.",
+  "keywords": [
+    "aws",
+    "jest",
+    "mock"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/moeriki/jest-mock-aws",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": "^8"
+  },
+  "scripts": {
+    "lint": "eslint --cache --fix index.js",
+    "test": "npm run lint && jest --coverage"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2",
+    "jest": "^23"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.323.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "jest": true
+    },
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "rules": {
+      "no-param-reassign": "off"
+    }
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}
