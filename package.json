@@ -13,7 +13,7 @@
     "index.js"
   ],
   "engines": {
-    "node": "^8"
+    "node": "^8 || ^10"
   },
   "scripts": {
     "lint": "eslint --cache --fix index.js",
@@ -21,13 +21,13 @@
   },
   "peerDependencies": {
     "aws-sdk": "^2",
-    "jest": "^23"
+    "jest": "^23 || ^24"
   },
   "devDependencies": {
     "aws-sdk": "^2.323.0",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.14.0"
   },
   "eslintConfig": {
