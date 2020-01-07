@@ -4,11 +4,11 @@ const serviceInstances = Symbol('instances');
 
 /**
  * @param {object} AWS
- * @param {string} name
+ * @param {string} serviceName
  * @param {object} [serviceInstance]
- * return {object} instance
+ * @return {object} instance
  */
-exports.mockAwsService = (AWS, serviceName, serviceInstance = {}) => {
+module.exports.mockAwsService = (AWS, serviceName, serviceInstance = {}) => {
   AWS[serviceInstances] = AWS[serviceInstances] || {};
   if (AWS[serviceInstances][serviceName]) {
     return AWS[serviceInstances][serviceName];
@@ -23,17 +23,19 @@ exports.mockAwsService = (AWS, serviceName, serviceInstance = {}) => {
  * @param {string} serviceName
  * @param {string} methodName
  * @param {function} [methodImplementation]
- * return {function} mock method implementation
+ * @return {function} mock method implementation
  */
-exports.mockAwsServiceMethod = (
+module.exports.mockAwsServiceMethod = (
   AWS,
   serviceName,
   methodName,
-  implementation
+  methodImplementation,
 ) => {
-  const serviceInstance = exports.mockAwsService(AWS, serviceName);
-  const inner = jest.fn(implementation);
-  const outer = jest.fn((...args) => ({ promise: () => inner(...args) }));
+  const serviceInstance = module.exports.mockAwsService(AWS, serviceName);
+  const inner = jest.fn(methodImplementation);
+  const outer = jest.fn((...arguments_) => ({
+    promise: () => inner(...arguments_),
+  }));
   serviceInstance[methodName] = outer;
   return inner;
 };
@@ -43,32 +45,32 @@ exports.mockAwsServiceMethod = (
  * @param {string} serviceName
  * @param {Array<string>|object} methodNames
  * @param {function} [implementation]
- * return {function} mock implementation
+ * @return {function} mock implementation
  */
-exports.mockAwsServiceMethods = (AWS, serviceName, methodNames) => {
+module.exports.mockAwsServiceMethods = (AWS, serviceName, methodNames) => {
   if (Array.isArray(methodNames)) {
     return methodNames.reduce(
-      (acc, methodName) =>
-        Object.assign(acc, {
-          [methodName]: exports.mockAwsServiceMethod(
+      (accumulator, methodName) =>
+        Object.assign(accumulator, {
+          [methodName]: module.exports.mockAwsServiceMethod(
             AWS,
             serviceName,
-            methodName
+            methodName,
           ),
         }),
-      {}
+      {},
     );
   }
   return Object.entries(methodNames).reduce(
-    (acc, [methodName, implementation]) =>
-      Object.assign(acc, {
-        [methodName]: exports.mockAwsServiceMethod(
+    (accumulator, [methodName, implementation]) =>
+      Object.assign(accumulator, {
+        [methodName]: module.exports.mockAwsServiceMethod(
           AWS,
           serviceName,
           methodName,
-          implementation
+          implementation,
         ),
       }),
-    {}
+    {},
   );
 };

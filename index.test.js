@@ -4,7 +4,7 @@ const {
   mockAwsService,
   mockAwsServiceMethod,
   mockAwsServiceMethods,
-} = require('./index');
+} = require('.');
 
 describe('mockAwsService', () => {
   it('should create new service instance', () => {
@@ -42,11 +42,11 @@ describe('mockAwsServiceMethods', () => {
     mockSqs.receiveMessages.mockResolvedValue('receive-messages-result');
     const sqs = new AWS.SQS();
     expect(await sqs.deleteMessage('delete-message').promise()).toBe(
-      'delete-message-result'
+      'delete-message-result',
     );
     expect(mockSqs.deleteMessage).toHaveBeenCalledWith('delete-message');
     expect(await sqs.receiveMessages('receive-messages').promise()).toBe(
-      'receive-messages-result'
+      'receive-messages-result',
     );
     expect(mockSqs.receiveMessages).toHaveBeenCalledWith('receive-messages');
   });
@@ -59,11 +59,11 @@ describe('mockAwsServiceMethods', () => {
     });
     const sqs = new AWS.SQS();
     expect(await sqs.deleteMessage('delete-message').promise()).toBe(
-      'delete-message-result'
+      'delete-message-result',
     );
     expect(mockSqs.deleteMessage).toHaveBeenCalledWith('delete-message');
     expect(await sqs.receiveMessages('receive-messages').promise()).toBe(
-      'receive-messages-result'
+      'receive-messages-result',
     );
     expect(mockSqs.receiveMessages).toHaveBeenCalledWith('receive-messages');
   });

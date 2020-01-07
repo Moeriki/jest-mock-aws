@@ -16,7 +16,7 @@
     "node": "^8 || ^10"
   },
   "scripts": {
-    "lint": "eslint --cache --fix index.js",
+    "lint": "eslint --cache --fix *.js",
     "test": "npm run lint && jest --coverage"
   },
   "peerDependencies": {
@@ -25,30 +25,15 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.323.0",
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-import": "^2.14.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "jest": true
-    },
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
-    "parserOptions": {
-      "sourceType": "script"
-    },
-    "rules": {
-      "no-param-reassign": "off"
-    }
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "singleQuote": true,
-    "trailingComma": "es5"
+    "eslint": "^6.8.0",
+    "eslint-config-noise": "^0.0.23",
+    "eslint-config-noise-node": "^0.0.23",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-unicorn": "^15.0.1",
+    "prettier": "^1.19.1"
   }
 }
