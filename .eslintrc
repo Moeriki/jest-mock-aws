@@ -3,11 +3,14 @@
   "env": {
     "jest": true
   },
-  "parserOptions": {
-    "sourceType": "script"
-  },
   "root": true,
   "rules": {
     "no-param-reassign": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": "**/*.ts",
+      "extends": "noise-ts"
+    }
+  ]
 }

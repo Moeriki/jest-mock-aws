@@ -1,10 +1,4 @@
-'use strict';
-
-const {
-  mockAwsService,
-  mockAwsServiceMethod,
-  mockAwsServiceMethods,
-} = require('.');
+import { mockAwsService, mockAwsServiceMethod, mockAwsServiceMethods } from '.';
 
 describe('mockAwsService', () => {
   it('should create new service instance', () => {

@@ -16,7 +16,7 @@
     "node": "12.14.0"
   },
   "scripts": {
-    "lint": "eslint --cache --fix *.js",
+    "lint": "eslint --cache --fix *.js src/*.ts",
     "test": "npm run lint && jest --coverage"
   },
   "peerDependencies": {
@@ -24,17 +24,24 @@
     "jest": "^23 || ^24"
   },
   "devDependencies": {
-    "aws-sdk": "^2.323.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "12.12",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "aws-sdk": "^2.598.0",
     "eslint": "^6.8.0",
     "eslint-config-noise": "^0.0.23",
     "eslint-config-noise-node": "^0.0.23",
+    "eslint-config-noise-ts": "^0.0.23",
     "eslint-config-prettier": "^6.9.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-unicorn": "^15.0.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.4"
   },
   "volta": {
     "node": "12.14.0",
